@@ -22,12 +22,18 @@ int main(int argc, char *argv[])
     {
         //std::cout << "enter preset value" << std::endl;
 
-        actual = ad->convert(0xD7);
+        //actual = ad->convert(0xA7);
         //actual = 100;
-        actual = actual * 0.34;
+
+        int actual=0;
+        for(int i=0; i<100; i++)
+        {
+            actual += ad->convert(CHANNEL_2) * 0.1894;
+        }
+        actual = static_cast<int>(actual/100);
 
         //std::cout << "preset " << preset << std::endl;
-        std::cout << "actual " << actual << ", preset "<< preset << std::endl;
+        std::cout << actual << preset << std::endl;
 
         h->ai_on();
 
