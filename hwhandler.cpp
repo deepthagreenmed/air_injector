@@ -41,12 +41,19 @@ void hwHandler::ai_off()
 
 void hwHandler::ai_preset_count(int count)
 {
+
     *((uint16_t *) (mapped_dev_base  + AI_PRESET_REG ))    = (uint16_t)(count);
-    //qDebug()<<"ai preset"<<count;
+   // qDebug()<<"ai preset"<<count;
 }
 
 void hwHandler::ai_actual_count(int count)
 {
     *((uint16_t *) (mapped_dev_base  + AI_COUNT_REG ))    = (uint16_t)(count);
-   // qDebug()<<"ai actual"<<count;
+    //qDebug()<<"ai actual"<<count;
+}
+
+void hwHandler::write_motor(int status, int dir, int value)
+{
+    *((uint16_t *) (mapped_dev_base  + MOT_CTRL_REG ))    = status | dir;
+    *((uint16_t *) (mapped_dev_base  + MOT_COUNT_REG ))   = value;
 }

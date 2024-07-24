@@ -1,9 +1,14 @@
 #include "hwhandler.h"
+#include "const.h"
 #include "ads7841.h"
 
 #include <QCoreApplication>
 
 #include <iostream>
+
+
+
+
 
 int main(int argc, char *argv[])
 {
@@ -15,8 +20,14 @@ int main(int argc, char *argv[])
     int preset;
     int actual;
 
+
+
  //   int input=0;
     preset = std::atoi(argv[1]);
+    if (preset == NULL)
+       std::cout<<"useage airingector PRESET";
+    int flow=90+ (int)(preset* 1.5);
+    h->write_motor(MOT_ONOFF_MASK,MOT_CCW_MASK,flow);
 
     while(1)
     {
@@ -26,14 +37,14 @@ int main(int argc, char *argv[])
         //actual = 100;
 
         int actual=0;
-        for(int i=0; i<1000; i++)
+        for(int i=0; i<100; i++)
         {
             actual += ad->convert(CHANNEL_2) * 0.1894;
         }
-        actual = static_cast<int>(actual/1000);
+        actual = static_cast<int>(actual/100);
 
         //std::cout << "preset " << preset << std::endl;
-        std::cout << actual << preset << std::endl;
+        std::cout << actual <<" "<< preset << std::endl;
 
         h->ai_on();
 
@@ -48,6 +59,11 @@ int main(int argc, char *argv[])
 
         h->ai_preset_count(preset);
         h->ai_actual_count(actual);
+
+//        h->ai_preset_count(preset);
+//        h->ai_actual_count(60);
+
+
 
 //        if(preset == 0 && actual == 0)
 //        {

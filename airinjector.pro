@@ -26,4 +26,5 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 HEADERS += \
     ads7841.h \
-    hwhandler.h
+    hwhandler.h \
+    const.h
