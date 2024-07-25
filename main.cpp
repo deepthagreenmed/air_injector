@@ -37,11 +37,11 @@ int main(int argc, char *argv[])
         //actual = 100;
 
         int actual=0;
-        for(int i=0; i<100; i++)
+        for(int i=0; i<10; i++)
         {
             actual += ad->convert(CHANNEL_2) * 0.1894;
         }
-        actual = static_cast<int>(actual/100);
+        actual = static_cast<int>(actual/10);
 
         //std::cout << "preset " << preset << std::endl;
         std::cout << actual <<" "<< preset << std::endl;
